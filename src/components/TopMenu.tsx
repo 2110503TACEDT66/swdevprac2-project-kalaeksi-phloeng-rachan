@@ -10,7 +10,7 @@ export default async function TopMenu() {
 		<div className="w-full h-[80px] bg-[#FFD933] flex fixed z-30 justify-end">
 			<div className="justify-start flex w-full">
 				<Image
-					src={"/img/logo.png"}
+					src={"/img/image-2@2x.png"}
 					className="h-[80px] w-[80px] ml-[60px] object-fit"
 					alt="logo"
 					width={0}

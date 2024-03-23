@@ -17,7 +17,6 @@ export default function Banner () {
         <div className={styles.banner} onClick={()=>{ setIndex(index+1)}}>
             <Image src={covers[index%3]} 
             alt='banner pic' 
-            fill={true}
             className='object-cover'/>
             <div className={styles.bannerText}>
                 <h1 className='text-4xl font-medium'>Your Travel Partner</h1>
