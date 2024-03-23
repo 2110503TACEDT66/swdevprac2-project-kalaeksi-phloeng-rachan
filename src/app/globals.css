@@ -90,21 +90,14 @@ body {
 }
 
 body {
-  color: #203541;
+  color: #EEEEEE;
   background: #203541;
   font-family: "Roboto Mono", monospace;
   font-optical-sizing: auto;
-  font-weight: 100;
+  font-weight: 700;
   font-style: normal;
 }
 
-.Link {
-  color: #203541;
-  font-family: "Roboto Mono", monospace;
-  font-optical-sizing: auto;
-  font-weight: 100;
-  font-style: normal;
-}
 
 a {
   color: inherit;

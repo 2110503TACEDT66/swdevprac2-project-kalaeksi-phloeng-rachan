@@ -18,11 +18,11 @@ interface HospitalJson {
 	data: HospitalItem[];
 }
 
-interface BookingItem {
+interface ReservationItem {
 	name: string;
-	surname: string;
-	id: string;
-	hospital: string;
-	bookDate: string;
+    email: string;
+	phoneNumber: string;
+	shop: string;
+	reservationDate: string;
 }
 

@@ -7,7 +7,7 @@ export default async function TopMenu() {
 	const session = await getServerSession(authOptions);
 
 	return (
-		<div className="w-full h-[80px] bg-[#FFD933] flex fixed z-30 justify-end">
+		<div className="w-full h-[80px] bg-[#FFD933] flex fixed z-30 justify-end text-[#203541]">
 			<div className="justify-start flex w-full">
 				<Image
 					src={"/img/image-2@2x.png"}
@@ -17,15 +17,15 @@ export default async function TopMenu() {
 					height={0}
 					sizes="100vh"
 				/>
-				<div className="text-[24px] font-bold mt-auto mb-auto ml-2">
+				<div className="text-2xl font-bold mt-auto mb-auto ml-2">
 					<p className="m-0">Monkey</p>
 					<p className="m-0">Massage</p>
 				</div>
 			</div>
 
 			<TopMenuItem title="Shop" icon="storefront" pageRef="/car" />
-			<TopMenuItem title="Reservations" icon="spa" pageRef="/reservations" />
-			<div className="w-fit text-[24px] text-center font-bold flex mt-auto mb-auto ml-4 mr-4">
+			<TopMenuItem title="My reservations" icon="spa" pageRef="/reservations" />
+			<div className="w-fit text-2xl text-center font-bold flex mt-auto mb-auto ml-4 mr-4">
 				{session ? (
 					<Link href="/api/auth/signout">
 						<div className="flex items-center ">
