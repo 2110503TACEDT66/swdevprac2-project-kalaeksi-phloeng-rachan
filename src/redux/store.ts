@@ -1,21 +1,20 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import cartSlice from "./features/cartSlice";
-import { useSelector, TypedUseSelectorHook } from "react-redux"
-import { persistReducer } from "redux-persist";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import reservationSlice from "./features/reservationSlice";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
 import storage from "redux-persist/lib/storage";
+import persistReducer from "redux-persist/es/persistReducer";
 
 const persistConfig = {
-    key: "rootPersist",
-    storage
-}
+	key: "rootPersist",
+	storage,
+};
 
-const rootReducer = combineReducers({cartSlice})
-const reduxPersistedReducer = persistReducer(persistConfig, rootReducer)
-
+const rootReducer = combineReducers({ reservationSlice });
+const reduxPersistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
-        reducer: reduxPersistedReducer
-})
+	reducer: reduxPersistedReducer,
+});
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

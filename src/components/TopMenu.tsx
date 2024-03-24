@@ -24,7 +24,7 @@ export default async function TopMenu() {
 			</div>
 
 			<TopMenuItem title="Shop" icon="storefront" pageRef="/car" />
-			<TopMenuItem title="My reservations" icon="spa" pageRef="/reservations" />
+			<TopMenuItem title="My reservations" icon="spa" pageRef="/myReservations" />
 			<div className="w-fit text-2xl text-center font-bold flex mt-auto mb-auto ml-4 mr-4">
 				{session ? (
 					<Link href="/api/auth/signout">
