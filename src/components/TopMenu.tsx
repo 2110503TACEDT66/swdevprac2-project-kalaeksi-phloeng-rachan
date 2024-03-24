@@ -41,7 +41,7 @@ export default async function TopMenu() {
                         </Link>
                         <Link href="/api/auth/signin" className="decoration-inherit">
                             <div className="text-[24px] font-bold text-[#203541] w-[100px]">
-                                Sign-In
+                                Register
                             </div>
                         </Link>
                     </div>
