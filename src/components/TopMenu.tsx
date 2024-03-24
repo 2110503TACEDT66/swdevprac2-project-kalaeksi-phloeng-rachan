@@ -7,7 +7,7 @@ export default async function TopMenu() {
 	const session = await getServerSession(authOptions);
 
 	return (
-		<div className="w-full h-[80px] bg-[#FFD933] flex fixed z-30 justify-end text-[#203541]">
+		<div className="top-0 left-0 right-0 h-[80px] bg-[#FFD933] flex fixed z-30 justify-end text-[#203541]">
 			<div className="justify-start flex w-full">
 				<Image
 					src={"/img/image-2@2x.png"}
