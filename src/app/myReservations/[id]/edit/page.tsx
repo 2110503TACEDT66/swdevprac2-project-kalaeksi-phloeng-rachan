@@ -14,6 +14,7 @@ export default function Reservations({ params }: { params: { id: string } }) {
 	const userEmail = urlParams.get("email");
 	const userPhoneNumber = urlParams.get("phoneNumber");
 
+
 	const [name, setName] = useState<string>(userName || "");
 	const [email, setEmail] = useState<string>(userEmail || "");
 	const [phoneNumber, setPhoneNumber] = useState<string>(userPhoneNumber || "");
@@ -42,40 +43,22 @@ export default function Reservations({ params }: { params: { id: string } }) {
 	};
 
 
-	async function AddReservation () {
-		// console.log(session)
-		if(session){
-			const user = await fetch(`http://localhost:5000/api/auth/me`, {
-				method: "GET",
-				headers: {
-					authorization: `Bearer ${session.user.token}`,
-				}
+	async function update () {
+		const response = fetch(`${process.env.BACKEND_URL}/api/reservations/${params.id}`,{
+			method: "PUT",
+			headers: {
+				authorization: `Bearer ${session?.user.token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				name: name,
+				email: email,
+				phoneNumber: phoneNumber,
+				massageShop: params.id,
+				pickupDate: dayjs(pickupDate).format("YYYY/MM/DD")
 			})
-		
-			if(!user.ok) {
-				throw new Error("Cannot get user profile")
-			}
-		
-			const userProfile = await user.json();
-			console.log(userProfile);
-			alert(userProfile.data._id);
-			const response = fetch(`http://localhost:5000/api/MassageShops/${params.id}/reservations`,{
-				method: "POST",
-				headers: {
-					authorization: `Bearer ${session.user.token}`,
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					user: userProfile.data._id,
-					name: name,
-					email: email,
-					phoneNumber: phoneNumber,
-					massageShop: params.id,
-					pickupDate: dayjs(pickupDate).format("YYYY/MM/DD")
-				})
-			});
-			console.log(await (await response).json())
-		}
+		});
+		console.log((await response).json())
 	}
 
 	return (
@@ -137,7 +120,7 @@ export default function Reservations({ params }: { params: { id: string } }) {
 								className="bg-[#F62A66] w-[400px] h-[100px] rounded-[20px] text-white text-4xl"
 								onClick={(e) => {
 									if (check()) {
-										AddReservation();
+										update();
 									}
 									e.preventDefault();
 								}}

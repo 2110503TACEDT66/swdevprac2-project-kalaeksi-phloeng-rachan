@@ -11,18 +11,22 @@ interface HospitalItem {
 	id: string;
 }
 
-interface HospitalJson {
+interface ReservationJson {
 	success: boolean;
 	count: number;
 	pagination: Object;
-	data: HospitalItem[];
+	data: ReservationItem[];
 }
 
 interface ReservationItem {
+	_id: string;
 	name: string;
     email: string;
 	phoneNumber: string;
-	shop: string;
-	reservationDate: string;
+	massageShop: {
+		name: string;
+		id: string;
+	}
+	pickupDate: string;
 }
 
