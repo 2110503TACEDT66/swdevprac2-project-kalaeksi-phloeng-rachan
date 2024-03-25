@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import Image from "next/image";
 import { Rating } from "@mui/material";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdOutlineEdit } from "react-icons/md";
 
 export default function MyReservation() {
 	const massageItem = useAppSelector(
@@ -56,61 +57,14 @@ export default function MyReservation() {
 					</div>
 
 					<button
-						className=" bg-[#F62A66] w-[180px] h-full flex justify-center items-center rounded-tr-[20px] rounded-br-[20px]"
+						className="bg-[#FFD933] w-[150px] h-full flex justify-center items-center"
 						onClick={() => dispatch(removeReservation(""))}
 					>
-						<RiDeleteBin6Line size="48px" color="#203541"/>
+						<MdOutlineEdit size="48px" color="#203541"/>
 					</button>
-				</div>
-			</div>
-			<div className="flex justify-center mt-5">
-				<Image
-					src={"/img/massage1.jpg"}
-					width={0}
-					height={0}
-					sizes="100vh"
-					alt="example massage"
-					className="w-[480px] h-[250px] rounded-[20px]"
-				></Image>
-				<div className="rounded-[20px] ml-[60px] w-[900px] h-[250px] border-2 border-[#EEEEEE] font-medium flex">
-					<div className="p-5 w-full">
-						<div className="text-5xl">Thai Sabai Massage</div>
-						<Rating name="read-only" value={4} readOnly size="large" />
-						<div className="text-2xl mt-2">Name: Pasit khumsena</div>
-						<div className="text-2xl">Email: webbalaka@gmail.com</div>
-						<div className="text-2xl">Phone number: 0918683540</div>
-						<div className="text-2xl">Reservation date: 2024/04/25</div>
-					</div>
 
 					<button
-						className=" bg-[#F62A66] w-[180px] h-full flex justify-center items-center rounded-tr-[20px] rounded-br-[20px]"
-						onClick={() => dispatch(removeReservation(""))}
-					>
-						<RiDeleteBin6Line size="48px" color="#203541"/>
-					</button>
-				</div>
-			</div>
-			<div className="flex justify-center mt-5">
-				<Image
-					src={"/img/massage1.jpg"}
-					width={0}
-					height={0}
-					sizes="100vh"
-					alt="example massage"
-					className="w-[480px] h-[250px] rounded-[20px]"
-				></Image>
-				<div className="rounded-[20px] ml-[60px] w-[900px] h-[250px] border-2 border-[#EEEEEE] font-medium flex">
-					<div className="p-5 w-full">
-						<div className="text-5xl">Thai Sabai Massage</div>
-						<Rating name="read-only" value={4} readOnly size="large" />
-						<div className="text-2xl mt-2">Name: Pasit khumsena</div>
-						<div className="text-2xl">Email: webbalaka@gmail.com</div>
-						<div className="text-2xl">Phone number: 0918683540</div>
-						<div className="text-2xl">Reservation date: 2024/04/25</div>
-					</div>
-
-					<button
-						className=" bg-[#F62A66] w-[180px] h-full flex justify-center items-center rounded-tr-[20px] rounded-br-[20px]"
+						className="bg-[#F62A66] w-[150px] h-full flex justify-center items-center rounded-tr-[20px] rounded-br-[20px]"
 						onClick={() => dispatch(removeReservation(""))}
 					>
 						<RiDeleteBin6Line size="48px" color="#203541"/>

@@ -13,11 +13,11 @@ export const reservationSlice = createSlice({
 		addReservation: (state, action: PayloadAction<ReservationItem>) => {
 			let haveChange = false;
 			const remainItems = state.reservationItems.filter((item) => {
-				if (item.id !== action.payload.id) return item;
-				else {
-					haveChange = true;
-					return action.payload;
-				}
+				// if (item.i !== action.payload.id) return item;
+				// else {
+				// 	haveChange = true;
+				// 	return action.payload;
+				// }
 			});
 
 			if (!haveChange) remainItems.push(action.payload);
@@ -25,12 +25,12 @@ export const reservationSlice = createSlice({
 			console.log(state.reservationItems.length);
 		},
 		removeReservation: (state, action: PayloadAction<String>) => {
-			const remainItems = state.reservationItems.filter((obj) => {
-				return (
-					obj.id !== action.payload
-				);
-			});
-			state.reservationItems = remainItems;
+			// const remainItems = state.reservationItems.filter((obj) => {
+			// 	return (
+			// 		obj.id !== action.payload
+			// 	);
+			// });
+			// state.reservationItems = remainItems;
 		},
 	},
 });
