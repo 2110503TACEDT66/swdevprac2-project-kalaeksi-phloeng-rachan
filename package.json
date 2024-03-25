@@ -17,6 +17,7 @@
     "@mui/x-date-pickers": "^6.19.6",
     "@reduxjs/toolkit": "^1.9.7",
     "dayjs": "^1.11.10",
+    "dotenv": "^16.4.5",
     "google-icon": "^1.0.1",
     "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^7.6.3",

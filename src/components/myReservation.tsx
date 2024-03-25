@@ -4,9 +4,9 @@ import { AppDispatch, useAppSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
 import { Rating } from "@mui/material";
-import { MdDeleteOutline } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
-export default function ReservationList() {
+export default function MyReservation() {
 	const massageItem = useAppSelector(
 		(state) => state.reservationSlice.reservationItems
 	);
@@ -59,7 +59,7 @@ export default function ReservationList() {
 						className=" bg-[#F62A66] w-[180px] h-full flex justify-center items-center rounded-tr-[20px] rounded-br-[20px]"
 						onClick={() => dispatch(removeReservation(""))}
 					>
-						<MdDeleteOutline size="48px" color="#203541"/>
+						<RiDeleteBin6Line size="48px" color="#203541"/>
 					</button>
 				</div>
 			</div>
@@ -86,7 +86,7 @@ export default function ReservationList() {
 						className=" bg-[#F62A66] w-[180px] h-full flex justify-center items-center rounded-tr-[20px] rounded-br-[20px]"
 						onClick={() => dispatch(removeReservation(""))}
 					>
-						<MdDeleteOutline size="48px" color="#203541"/>
+						<RiDeleteBin6Line size="48px" color="#203541"/>
 					</button>
 				</div>
 			</div>
@@ -113,7 +113,7 @@ export default function ReservationList() {
 						className=" bg-[#F62A66] w-[180px] h-full flex justify-center items-center rounded-tr-[20px] rounded-br-[20px]"
 						onClick={() => dispatch(removeReservation(""))}
 					>
-						<MdDeleteOutline size="48px" color="#203541"/>
+						<RiDeleteBin6Line size="48px" color="#203541"/>
 					</button>
 				</div>
 			</div>

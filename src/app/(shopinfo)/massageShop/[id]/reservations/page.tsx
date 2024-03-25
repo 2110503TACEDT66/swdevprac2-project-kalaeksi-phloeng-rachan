@@ -6,7 +6,7 @@ import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
-import { addReservation } from "@/redux/features/cartSlice";
+import { addReservation } from "@/redux/features/reservationSlice";
 import Image from "next/image";
 export default function Reservations() {
 	const urlParams = useSearchParams();

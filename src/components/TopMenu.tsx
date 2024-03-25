@@ -3,8 +3,16 @@ import TopMenuItem from "./TopMenuItem";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Link } from "@mui/material";
+import getUserProfile from "@/libs/getUserProfile";
+import { FaRegUserCircle } from "react-icons/fa";
+import { GoTriangleDown } from "react-icons/go";
+
 export default async function TopMenu() {
 	const session = await getServerSession(authOptions);
+	if(session && session.user.token){
+		var profile = await getUserProfile(session.user.token);
+	}
+	// console.log(profile.data.name);
 
 	return (
 		<div className="top-0 left-0 right-0 h-[80px] bg-[#FFD933] flex fixed z-30 justify-end text-[#203541] border-b-[2px] border-[#EEEEEE] font-bold">
@@ -27,19 +35,21 @@ export default async function TopMenu() {
 			<TopMenuItem title="My reservations" icon="spa" pageRef="/myReservations" />
 			<div className="w-fit text-2xl text-center font-bold flex mt-auto mb-auto ml-4 mr-4">
 				{session ? (
-					<Link href="/api/auth/signout">
-						<div className="flex items-center ">
-							Sign-Out of {session.user?.name}{" "}
+					<Link href="/api/auth/signout" underline="none">
+						<div className="flex items-center text-[#203541]">
+							<FaRegUserCircle className="mr-2"/>
+							{profile.data?.name}
+							<GoTriangleDown />
 						</div>
 					</Link>
 				) : (
                     <div className="flex items-center">
-                        <Link href="/api/auth/signin" className="decoration-inherit">
+                        <Link href="/api/auth/login" underline="none">
                             <div className="text-[24px] font-bold text-[#203541] w-fit">
                                 Login
                             </div>
                         </Link>
-                        <Link href="/api/auth/signin" className="decoration-inherit">
+                        <Link href="/api/auth/signin" underline="none">
                             <div className="text-[24px] font-bold text-[#203541] w-[100px]">
                                 Register
                             </div>
