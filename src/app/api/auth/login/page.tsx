@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { Button } from "@mui/material";
 import { signIn } from "next-auth/react";
-import styles from "./Login.module.css"; // นำเข้าไฟล์ CSS Modules
 
 export default function Login() {
   const handleSubmit = async (loginForm: FormData) => {
