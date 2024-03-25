@@ -19,7 +19,7 @@ export default function Reservations({ params }: { params: { id: string } }) {
 	const [phoneNumber, setPhoneNumber] = useState<string>(userPhoneNumber || "");
 	const [pickupDate, setPickupDate] = useState<Dayjs | null>(null);
 
-	const {data: session } = useSession();
+	const { data: session } = useSession();
 
 	const check = () => {
 		if (!name) {
@@ -41,40 +41,40 @@ export default function Reservations({ params }: { params: { id: string } }) {
 		return true;
 	};
 
-
-	async function AddReservation () {
-		// console.log(session)
-		if(session){
+	async function AddReservation() {
+		if (session) {
 			const user = await fetch(`http://localhost:5000/api/auth/me`, {
 				method: "GET",
 				headers: {
 					authorization: `Bearer ${session.user.token}`,
-				}
-			})
-		
-			if(!user.ok) {
-				throw new Error("Cannot get user profile")
+				},
+			});
+
+			if (!user.ok) {
+				throw new Error("Cannot get user profile");
 			}
-		
+
 			const userProfile = await user.json();
 			console.log(userProfile);
-			alert(userProfile.data._id);
-			const response = fetch(`http://localhost:5000/api/MassageShops/${params.id}/reservations`,{
-				method: "POST",
-				headers: {
-					authorization: `Bearer ${session.user.token}`,
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					user: userProfile.data._id,
-					name: name,
-					email: email,
-					phoneNumber: phoneNumber,
-					massageShop: params.id,
-					pickupDate: dayjs(pickupDate).format("YYYY/MM/DD")
-				})
-			});
-			console.log(await (await response).json())
+			const response = fetch(
+				`http://localhost:5000/api/MassageShops/${params.id}/reservations`,
+				{
+					method: "POST",
+					headers: {
+						authorization: `Bearer ${session.user.token}`,
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						user: userProfile.data._id,
+						name: name,
+						email: email,
+						phoneNumber: phoneNumber,
+						massageShop: params.id,
+						pickupDate: dayjs(pickupDate).format("YYYY/MM/DD"),
+					}),
+				}
+			);
+			console.log(await (await response).json());
 		}
 	}
 
@@ -95,7 +95,9 @@ export default function Reservations({ params }: { params: { id: string } }) {
 					<h1 className="text-5xl text-center mt-5 font-weight: 700">
 						Reservation
 					</h1>
-					<h2 className="text-2xl text-center mt-2 font-weight: 700">{massageShop}</h2>
+					<h2 className="text-2xl text-center mt-2 font-weight: 700">
+						{massageShop}
+					</h2>
 					<form>
 						<div className="mt-5 mb-4">
 							<h2 className="text-xl">Name</h2>

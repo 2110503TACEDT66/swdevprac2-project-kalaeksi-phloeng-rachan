@@ -13,14 +13,14 @@ export default function Reservations({ params }: { params: { id: string } }) {
 	const userName = urlParams.get("name");
 	const userEmail = urlParams.get("email");
 	const userPhoneNumber = urlParams.get("phoneNumber");
-
+	const userMassageId = urlParams.get("massageId");
 
 	const [name, setName] = useState<string>(userName || "");
 	const [email, setEmail] = useState<string>(userEmail || "");
 	const [phoneNumber, setPhoneNumber] = useState<string>(userPhoneNumber || "");
 	const [pickupDate, setPickupDate] = useState<Dayjs | null>(null);
 
-	const {data: session } = useSession();
+	const { data: session } = useSession();
 
 	const check = () => {
 		if (!name) {
@@ -42,23 +42,41 @@ export default function Reservations({ params }: { params: { id: string } }) {
 		return true;
 	};
 
+	async function updateReservation() {
+		if (session) {
+			const user = await fetch(`http://localhost:5000/api/auth/me`, {
+				method: "GET",
+				headers: {
+					authorization: `Bearer ${session.user.token}`,
+				},
+			});
 
-	async function update () {
-		const response = fetch(`${process.env.BACKEND_URL}/api/reservations/${params.id}`,{
-			method: "PUT",
-			headers: {
-				authorization: `Bearer ${session?.user.token}`,
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				name: name,
-				email: email,
-				phoneNumber: phoneNumber,
-				massageShop: params.id,
-				pickupDate: dayjs(pickupDate).format("YYYY/MM/DD")
-			})
-		});
-		console.log((await response).json())
+			if (!user.ok) {
+				throw new Error("Cannot get user profile");
+			}
+
+			const userProfile = await user.json();
+			console.log(userProfile);
+			const response = fetch(
+				`http://localhost:5000/api/reservations/${params.id}`,
+				{
+					method: "PUT",
+					headers: {
+						authorization: `Bearer ${session.user.token}`,
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						user: userProfile.data._id,
+						name: name,
+						email: email,
+						phoneNumber: phoneNumber,
+						massageShop: userMassageId,
+						pickupDate: dayjs(pickupDate).format("YYYY/MM/DD"),
+					}),
+				}
+			);
+			console.log(await (await response).json());
+		}
 	}
 
 	return (
@@ -78,7 +96,9 @@ export default function Reservations({ params }: { params: { id: string } }) {
 					<h1 className="text-5xl text-center mt-5 font-weight: 700">
 						Reservation
 					</h1>
-					<h2 className="text-2xl text-center mt-2 font-weight: 700">{massageShop}</h2>
+					<h2 className="text-2xl text-center mt-2 font-weight: 700">
+						{massageShop}
+					</h2>
 					<form>
 						<div className="mt-5 mb-4">
 							<h2 className="text-xl">Name</h2>
@@ -120,7 +140,7 @@ export default function Reservations({ params }: { params: { id: string } }) {
 								className="bg-[#F62A66] w-[400px] h-[100px] rounded-[20px] text-white text-4xl"
 								onClick={(e) => {
 									if (check()) {
-										update();
+										updateReservation();
 									}
 									e.preventDefault();
 								}}

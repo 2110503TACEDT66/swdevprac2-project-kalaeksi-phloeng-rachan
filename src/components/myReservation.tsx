@@ -14,7 +14,7 @@ export default function MyReservation() {
 
 	useEffect(() => {
 		fetch(
-			"${process.env.BACKEND_URL}/api/MassageShops/65fdcf60873a4d1f9d5e3185/reservations",
+			`http://localhost:5000/api/reservations`,
 			{
 				method: "GET",
 				headers: {
@@ -26,6 +26,7 @@ export default function MyReservation() {
 			.then((res) => res.json())
 			.then((data) => {
 				setMassageJsonItem(data);
+				console.log(data);
 			});
 	}, []);
 
@@ -63,7 +64,7 @@ export default function MyReservation() {
 
 									<Link
 										className="bg-[#FFD933] w-[150px] h-full flex justify-center items-center"
-										href={`/myReservations/${massageItem._id}/edit?massageShop=${massageItem.massageShop.name}&name=${massageItem.name}&email=${massageItem.email}&phoneNumber=${massageItem.phoneNumber}`}
+										href={`/myReservations/${massageItem._id}/edit?massageShop=${massageItem.massageShop.name}&massageId=${massageItem.massageShop.id}&&name=${massageItem.name}&email=${massageItem.email}&phoneNumber=${massageItem.phoneNumber}`}
 									>
 										<MdOutlineEdit size="48px" color="#203541" />
 									</Link>
