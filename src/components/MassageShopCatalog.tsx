@@ -10,7 +10,7 @@ export default function MassageShopCatalog({massageShopJson}: {massageShopJson: 
                     massageShopJsonReady.data.map((massageShopItem: MassageShopItem)=>(
                         <ProductCard massageShopName={massageShopItem.name}
                                     massageShopAddress={massageShopItem.address}
-                                    imgSrc='/img/massage2.jpg'
+                                    imgSrc={massageShopItem.picture}
                                     massageShopRating={5}
                                     massageShopId={massageShopItem.id}/>
                     ))
