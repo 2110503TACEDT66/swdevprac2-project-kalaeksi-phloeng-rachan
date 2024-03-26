@@ -1,22 +1,17 @@
-import getCars from "@/libs/getMassages"
-import CarCatalog from "@/components/CarCatalog"
+import getMassages from "@/libs/getMassages"
+import MassageShopCatalog from "@/components/MassageShopCatalog"
 import { Suspense } from "react"
-import { LinearProgress } from "@mui/material" 
-import CarPanel from "@/components/CarPanel"
+import { LinearProgress } from "@mui/material"
 
-export default async function Car() {
-    const cars = await getCars()
+export default async function MassageShop() {
+    const massageShops = await getMassages()
     
     return (
         <main className="text-center p-5">
-            <h1 className="text-xl font-medium">Select Your Travel Partner</h1>
-            <Suspense fallback={ <p>Loading ... <LinearProgress/></p> }>
-            <CarCatalog carJson={cars}/>
+            <h1 className="text-5xl font-bold">Massage Shops</h1>
+            <Suspense fallback={ <p>Loading ...</p> }>
+            <MassageShopCatalog massageShopJson={massageShops}/>
             </Suspense>
-
-            <hr className="my-10"/>
-            <h1 className="text-xl font-medium">TRY Client-side Car Panel</h1>
-            <CarPanel/>
         </main>
     )
 }
