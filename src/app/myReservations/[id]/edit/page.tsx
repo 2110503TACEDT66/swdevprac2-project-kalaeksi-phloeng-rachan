@@ -66,7 +66,7 @@ export default function Reservations({ params }: { params: { id: string } }) {
 						"Content-Type": "application/json",
 					},
 					body: JSON.stringify({
-						user: userProfile.data._id,
+						//user: userProfile.data._id,
 						name: name,
 						email: email,
 						phoneNumber: phoneNumber,
