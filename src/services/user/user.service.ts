@@ -16,6 +16,11 @@ export const login = async (loginForm: ILogin) => {
       throw new Error("Something went wrong");
     }
 
+    Swal.fire({
+      title: "Register success",
+      icon: "success"
+    })
+
     const data = await res.json();
     console.log(data);
 

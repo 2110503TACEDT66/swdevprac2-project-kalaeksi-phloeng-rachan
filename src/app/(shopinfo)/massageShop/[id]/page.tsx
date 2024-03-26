@@ -31,7 +31,7 @@ export default async function MassageDetailPage( {params} : { params: {id:string
                                         close={massageShopDetail.massageShop.close}/>
             </div>
             <div className="w-[1440px] h-fit bg-[#3A4750] m-auto mt-5">
-                {session?
+                {session? 
                 ReviewContent.data.map((item:ReviewItem) => (
                     <div className="flex p-5">
                         <Image src={"/img/pastamania.png"} width={0} height={0} sizes="100vh" alt="pasta" className="w-[120px] h-[120px] rounded-[120px]">
