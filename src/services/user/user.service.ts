@@ -1,6 +1,6 @@
 import { ILogin, IRegister, IUser } from "@/interfaces/user/login.interface";
 
-const API_BASE_URL = `http://localhost: 5001
+const API_BASE_URL = `http://localhost: 5000
 }/api/v1`;
 
 export const login = async (loginForm: ILogin) => {
@@ -82,7 +82,7 @@ export const updateUserProfile = async (token: string, body: IUser) => {
       },
       body: JSON.stringify(body),
     });
-
+ 
     if (!res.ok) {
       throw new Error("Something went wrong");
     }
