@@ -30,3 +30,21 @@ interface ReservationItem {
 	pickupDate: string;
 }
 
+interface MassageShopJson {
+	success: boolean;
+	count: number;
+	pagination: Object;
+	data: MassageShopItem[];
+}
+
+interface MassageShopItem {
+	_id: string;
+	name: string;
+	address: string;
+	tel: string;
+	open: string;
+	close: string;
+	review: Object[]
+    reservations: Object[],
+	id: string;
+}

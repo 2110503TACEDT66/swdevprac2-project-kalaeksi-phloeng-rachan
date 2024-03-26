@@ -1,12 +1,7 @@
-import { resolve } from "path"
-
-export default async function getCars() {
-
-    //await new Promise( (resolve)=>setTimeout(resolve, 5000) )
-
-    const response = await fetch(`${process.env.BACKEND_URL}/api/v1/cars`, { next: {tags:['cars']} })
+export default async function getMassages() {
+    const response = await fetch(`${process.env.BACKEND_URL}/api/massageShops`);
     if(!response.ok) {
-        throw new Error("Failed to fetch cars")
+        throw new Error("Failed to fetch massageShops")
     }
 
     return await response.json()
