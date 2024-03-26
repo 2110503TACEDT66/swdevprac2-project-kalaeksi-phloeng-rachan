@@ -1,40 +1,18 @@
 'use client'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from './banner.module.css'
 import Image from 'next/image';
-import {  useSession } from 'next-auth/react'
 
 export default function Banner () {
-    const covers = ['/img/cover.jpg', '/img/cover2.jpg', '/img/cover3.jpg']
-    const [index, setIndex] = useState(0)
-    const router = useRouter()
-
-    const { data: session } = useSession()
-    console.log(session?.user.token)
+    const [index, setIndex] = useState(0) //-1 0 1
 
     return (
-        <div className={styles.banner} onClick={()=>{ setIndex(index+1)}}>
-            <Image src={covers[index%3]} 
-            fill={true}
-            alt='banner pic' 
-            className='object-cover'/>
-            <div className={styles.bannerText}>
-                <h1 className='text-4xl font-medium'>Your Travel Partner</h1>
-                <h3 className='text-xl font-serif'>Explore Your World with Us</h3>
-            </div>
-            {
-                session? <div className='z-30 absolute top-5 right-10 font-semibold text-cyan-800 text-xl'>
-                        Hello {session.user?.name}</div> 
-                        : null
-            }
-            <button className='bg-white text-cyan-600 border border-cyan-600 
-                font-semibold py-2 px-2 m-5 rounded z-30 absolute bottom-0 right-0
-                hover:bg-cyan-600 hover:text-white hover:border-transparent'
-                onClick={(e)=> { e.stopPropagation(); router.push('/car') }}
-                >
-                Select Your Travel Partner NOW
-            </button>
+        <div className={`duration-1000 flex flex-row justify-center items-end mt-[100px] ${index===-1 ? 'pl-[500px]': ''} ${index===1 ? 'pr-[500px]': ''}`}>
+            <Image className='duration-1000' src={'/img/image-7@2x.png'} alt={"leftPicture"} width={485-(index)*100} height={380-(index)*100}/>
+            <Image className='mx-[20px]' src={'/leftArrow.svg'} alt={"leftArrow"} width={100} height={100} onClick={(e)=>{e.stopPropagation(); setIndex(Math.max(index - 1, -1));}}/>
+            <Image className='duration-1000 rounded-[100px]' src={'/img/massage1.jpg'} alt={"leftPicture"} width={485+(-Math.abs(index) + 1)*100} height={380+(index + 1)*100}/>
+            <Image className='mx-[20px]' src={'/rightArrow.svg'} alt={"rightArrow"} width={100} height={100} onClick={(e)=>{e.stopPropagation(); setIndex(Math.min(index + 1, 1));}}/>
+            <Image className='duration-1000' src={'/img/image-10@2x.png'} alt={"leftPicture"} width={485+(index)*100} height={380+(index)*100}/>
         </div>
     );
 }
