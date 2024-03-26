@@ -14,7 +14,7 @@ export default function MyReservation() {
 
 	useEffect(() => {
 		fetch(
-			`http://localhost:5000/api/reservations`,
+			`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/reservations`,
 			{
 				method: "GET",
 				headers: {

@@ -44,7 +44,7 @@ export default function Reservations({ params }: { params: { id: string } }) {
 
 	async function updateReservation() {
 		if (session) {
-			const user = await fetch(`http://localhost:5000/api/auth/me`, {
+			const user = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/auth/me`, {
 				method: "GET",
 				headers: {
 					authorization: `Bearer ${session.user.token}`,
@@ -58,7 +58,7 @@ export default function Reservations({ params }: { params: { id: string } }) {
 			const userProfile = await user.json();
 			console.log(userProfile);
 			const response = fetch(
-				`http://localhost:5000/api/reservations/${params.id}`,
+				`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/reservations/${params.id}`,
 				{
 					method: "PUT",
 					headers: {

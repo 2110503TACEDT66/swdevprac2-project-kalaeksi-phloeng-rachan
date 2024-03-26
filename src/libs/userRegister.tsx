@@ -1,5 +1,5 @@
 export default async function userRegister(userName:string, userEmail: string, userPassword: string, userTel: string) {
-    const response = await fetch("http://localhost:5000/api/v1/auth/register", {
+    const response = await fetch("https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/v1/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

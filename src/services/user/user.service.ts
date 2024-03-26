@@ -1,7 +1,6 @@
 import { ILogin, IRegister, IUser } from "@/interfaces/user/login.interface";
 
-const API_BASE_URL = `http://localhost: 5001
-}/api/v1`;
+const API_BASE_URL = `https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app`;
 
 export const login = async (loginForm: ILogin) => {
   try {

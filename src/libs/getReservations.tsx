@@ -1,5 +1,5 @@
 export default async function getReservations() {
-    const response = await fetch(`${process.env.BACKEND_URL}/api/reservations`)
+    const response = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/reservations`)
     if(!response.ok) {
         throw new Error("Failed to fetch car")
     }
