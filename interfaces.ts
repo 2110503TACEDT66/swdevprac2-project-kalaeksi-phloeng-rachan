@@ -44,6 +44,7 @@ interface MassageShopItem {
 	tel: string;
 	open: string;
 	close: string;
+	picture: string;
 	review: Object[]
     reservations: Object[],
 	id: string;
