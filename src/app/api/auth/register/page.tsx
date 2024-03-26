@@ -31,7 +31,7 @@ export default function Register() {
       name: registerFormData.get("username") as string,
       email: registerFormData.get("email") as string,
       tel: registerFormData.get("tel") as string,
-      role: registerFormData.get("role") as string,
+      role: "user",
       password: password,
     };
 

@@ -1,10 +1,9 @@
 import { ILogin, IRegister, IUser } from "@/interfaces/user/login.interface";
 
-const API_BASE_URL = `https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app`;
 
 export const login = async (loginForm: ILogin) => {
   try {
-    const res = await fetch(`${API_BASE_URL}/auth/login`, {
+    const res = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +27,7 @@ export const login = async (loginForm: ILogin) => {
 
 export const getUserProfile = async (token: string) => {
   try {
-    const res = await fetch(`${API_BASE_URL}/auth/me`, {
+    const res = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/auth/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -50,15 +49,17 @@ export const getUserProfile = async (token: string) => {
 
 export const register = async (registerForm: IRegister) => {
   try {
-    const res = await fetch(`${API_BASE_URL}/auth/register`, {
+    const res = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(registerForm),
     });
-
+    console.log(registerForm);
+    alert("look");
     if (!res.ok) {
+      console.log()
       throw new Error("Something went wrong");
     }
 
@@ -73,7 +74,7 @@ export const register = async (registerForm: IRegister) => {
 export const updateUserProfile = async (token: string, body: IUser) => {
   console.log("body" + JSON.stringify(body));
   try {
-    const res = await fetch(`${API_BASE_URL}/auth/me`, {
+    const res = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/auth/me`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
