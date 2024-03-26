@@ -1,50 +1,69 @@
-import Image from "next/image"
-import getCar from "@/libs/getMassage"
-import Link from "next/link"
-export default async function CarDetailPage( {params} : { params: {cid:string}} ) {
-    
-    const carDetail = await getCar(params.cid)
+import getMassage from "@/libs/getMassage"
+import ProductCardDetail from "@/components/ProductCardDetail";
 
-    /** 
-     *  Mock Data for Demonstration Only
-    */
-   /*
-   const mockCarRepo = new Map()
-   mockCarRepo.set("001", {name: "Honda Civic", image: "/img/civic.jpg"})
-   mockCarRepo.set("002", {name: "Honda Accord", image: "/img/accord.jpg"})
-   mockCarRepo.set("003", {name: "Toyota Fortuner", image: "/img/fortuner.jpg"})
-   mockCarRepo.set("004", {name: "Tesla Model 3", image: "/img/tesla.jpg"})
-   */
+export default async function MassageDetailPage( {params} : { params: {id:string}} ) {
+    
+    const massageShopDetail = await getMassage(params.id);
 
     return(
-        <main className="text-center p-5">
-            <h1 className="text-lg font-medium">{carDetail.data.model}</h1>
-            <div className="flex flex-row my-5">
-                <Image src={ carDetail.data.picture }
-                    alt='Car Image'
-                    width={0} height={0} sizes="100vw"
-                    className="rounded-lg w-[30%]"/>
-                <div className="text-md mx-5 text-left">{ carDetail.data.description }
-                <div className="text-md mx-5">Doors: { carDetail.data.doors }</div>
-                <div className="text-md mx-5">Seats: { carDetail.data.seats }</div>
-                <div className="text-md mx-5">Large Bags: { carDetail.data.largebags }</div>
-                <div className="text-md mx-5">Small Bags: { carDetail.data.smallbags }</div>
-                <div className="text-md mx-5">Daily Rental Rate: { carDetail.data.dayRate } (insurance included)</div>
-                
-                <Link href={`/reservations?id=${params.cid}&model=${carDetail.data.model}`}>
-                <button className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 
-                text-white shadow-sm">
-                    Make Reservation
-                </button>
-                </Link>
-                
-                </div>
-                
+        <main className="p-5">
+            <div className="flex flex-col items-center">
+                <ProductCardDetail massageShopName={massageShopDetail.massageShop.name}
+                                        massageShopAddress={massageShopDetail.massageShop.address}
+                                        imgSrc='/img/massage2.jpg'
+                                        massageShopRating={5}
+                                        massageShopId={massageShopDetail.massageShop.id}
+                                        massageShopTel={massageShopDetail.massageShop.tel}
+                                        open={massageShopDetail.massageShop.open}
+                                        close={massageShopDetail.massageShop.close}/>
             </div>
         </main>
     )
 }
-
+/*
 export async function generateStaticParams() {
     return [{cid:'001'}, {cid:'002'}, {cid:'003'}, {cid:'004'}]
 }
+
+<ProductCard massageShopName={massageShopItem.name}
+                                    massageShopAddress={massageShopItem.address}
+                                    imgSrc='/img/massage2.jpg'
+                                    massageShopRating={5}
+                                    massageShopId={massageShopItem.id}/>
+
+<div className="flex mx-[60px] mt-[60px]">
+    <div>
+        <Image
+            src={"/img/massage1.jpg"}
+            alt="Image example"
+            width={0}
+            height={0}
+            sizes="100vh"
+            className="w-[1200px] h-[500px] rounded-[20px] object-fit"
+        ></Image>
+    </div>
+    <div className="w-[540px] h-[720px] ml-[60px] border-2 border-[#EEEEEE] rounded-xl px-[30px]">
+        <h1 className="text-5xl text-center mt-5 font-weight: 700">
+            Reservation
+        </h1>
+        <h2 className="text-2xl text-center mt-2 font-weight: 700">
+            {massageShopDetail.name}
+        </h2>
+        <form>
+            <div className="mt-5 mb-4">
+                <h2 className="text-xl">Name</h2>
+            </div>
+            <div className="mb-4">
+                <h2 className="text-xl">Email</h2>
+            </div>
+            <div className="mb-4">
+                <h2 className="text-xl">Phone number</h2>
+            </div>
+            <br />
+            <div className="flex justify-center mt-4">
+                
+            </div>
+        </form>
+    </div>
+</div>
+*/
