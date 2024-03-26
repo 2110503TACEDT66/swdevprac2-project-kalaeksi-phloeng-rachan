@@ -8,10 +8,9 @@ export default function MassageShopCatalog({massageShopJson}: {massageShopJson: 
             <div className="flex flex-col items-center">
                 {
                     massageShopJsonReady.data.map((massageShopItem: MassageShopItem)=>(
-                        
                         <ProductCard massageShopName={massageShopItem.name}
                                     massageShopAddress={massageShopItem.address}
-                                    imgSrc={'/img/massage2.jpg'}
+                                    imgSrc='/img/massage2.jpg'
                                     massageShopRating={5}
                                     massageShopId={massageShopItem.id}/>
                     ))
@@ -20,3 +19,8 @@ export default function MassageShopCatalog({massageShopJson}: {massageShopJson: 
         </div>
     )
 }
+/*<ProductCard massageShopName={massageShopItem.name}
+                                    massageShopAddress={massageShopItem.address}
+                                    imgSrc={massageShopItem.name}
+                                    massageShopRating={5}
+                                    massageShopId={massageShopItem.id}/> */
