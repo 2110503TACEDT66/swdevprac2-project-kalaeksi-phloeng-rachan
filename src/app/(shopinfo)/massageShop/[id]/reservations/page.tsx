@@ -2,12 +2,40 @@
 import DateReserve from "@/components/DateReserve";
 import { TextField } from "@mui/material";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import Swal from 'sweetalert2'
 
 export default function Reservations({ params }: { params: { id: string } }) {
+	const { data: session } = useSession();
+	
+	useEffect(() => {
+		if(session && session.user.token){
+			fetch(
+				`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/auth/me`,
+				{
+					method: "GET",
+					headers: {
+						authorization: `Bearer ${session?.user.token}`,
+						"Content-Type": "application/json",
+					},
+				}
+			)
+				.then((res) => res.json())
+				.then((obj) => {
+					setName(obj.data.name);
+					setEmail(obj.data.email);
+					setPhoneNumber(obj.data.tel);
+					// console.log(obj.data);
+				})
+				// .catch(() => {router.push("/api/auth/login")});
+		} else {
+			alert("Please login first");
+		}
+	}, []);
+
 	const urlParams = useSearchParams();
 	const massageShop = urlParams.get("massageShop");
 	const userName = urlParams.get("name");
@@ -19,7 +47,6 @@ export default function Reservations({ params }: { params: { id: string } }) {
 	const [phoneNumber, setPhoneNumber] = useState<string>(userPhoneNumber || "");
 	const [pickupDate, setPickupDate] = useState<Dayjs | null>(null);
 
-	const { data: session } = useSession();
 
 	const check = () => {
 		if (!name) {
@@ -74,6 +101,9 @@ export default function Reservations({ params }: { params: { id: string } }) {
 					}),
 				}
 			);
+			if((await response).status === 400){
+				throw new Error();
+			}
 			console.log(await (await response).json());
 		}
 	}
@@ -139,8 +169,19 @@ export default function Reservations({ params }: { params: { id: string } }) {
 								className="bg-[#F62A66] w-[400px] h-[100px] rounded-[20px] text-white text-4xl"
 								onClick={(e) => {
 									if (check()) {
-										AddReservation();
+										AddReservation().then( () => 
+											Swal.fire({
+												title: "Success reserve",
+												icon: "success"
+											  })
+										).catch(() => 
+										Swal.fire({
+											icon: "error",
+											title: "Oops...",
+											text: "You can reserve only 3 massage shops",
+										  }))
 									}
+									
 									e.preventDefault();
 								}}
 							>

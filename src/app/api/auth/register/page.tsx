@@ -36,7 +36,7 @@ export default function Register() {
     };
 
     await register(registerForm);
-    redirect("/");
+    redirect("/api/auth/login");
   };
 
   return (

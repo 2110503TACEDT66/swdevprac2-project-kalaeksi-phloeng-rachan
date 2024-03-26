@@ -6,28 +6,36 @@ import { MdOutlineEdit } from "react-icons/md";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function MyReservation() {
 	const { data: session } = useSession();
+	const router = useRouter();
 
 	const [massageJsonItem, setMassageJsonItem] = useState<ReservationJson>();
 
 	useEffect(() => {
-		fetch(
-			`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/reservations`,
-			{
-				method: "GET",
-				headers: {
-					authorization: `Bearer ${session?.user.token}`,
-					"Content-Type": "application/json",
-				},
-			}
-		)
-			.then((res) => res.json())
-			.then((data) => {
-				setMassageJsonItem(data);
-				console.log(data);
-			});
+		if(session && session.user.token){
+			fetch(
+				`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/reservations`,
+				{
+					method: "GET",
+					headers: {
+						authorization: `Bearer ${session?.user.token}`,
+						"Content-Type": "application/json",
+					},
+				}
+			)
+				.then((res) => res.json())
+				.then((data) => {
+					setMassageJsonItem(data);
+					console.log(data);
+				})
+				// .catch(() => {router.push("/api/auth/login")});
+		} else {
+			alert("Please login first");
+			router.push("/api/auth/login");
+		}
 	}, []);
 
 	return (

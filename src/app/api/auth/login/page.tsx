@@ -42,7 +42,7 @@ export default function Login() {
             </div>
             <div className="flex justify-center">
             <Button
-              type="button"
+              type="submit"
               className="w-[10%] font-serif text-black bg-yellow-500 hover:bg-yellow-600 my-2"
             >
               Login

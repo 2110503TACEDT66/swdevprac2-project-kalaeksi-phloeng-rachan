@@ -3,7 +3,7 @@ import { ILogin, IRegister, IUser } from "@/interfaces/user/login.interface";
 
 export const login = async (loginForm: ILogin) => {
   try {
-    const res = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/auth/login`, {
+    const res = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export const login = async (loginForm: ILogin) => {
 
 export const getUserProfile = async (token: string) => {
   try {
-    const res = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/auth/me`, {
+    const res = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/auth/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export const getUserProfile = async (token: string) => {
 
 export const register = async (registerForm: IRegister) => {
   try {
-    const res = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/auth/register`, {
+    const res = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export const register = async (registerForm: IRegister) => {
 export const updateUserProfile = async (token: string, body: IUser) => {
   console.log("body" + JSON.stringify(body));
   try {
-    const res = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/auth/me`, {
+    const res = await fetch(`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/auth/me`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

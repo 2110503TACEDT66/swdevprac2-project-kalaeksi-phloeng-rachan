@@ -5,10 +5,11 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Link } from "@mui/material";
 import getUserProfile from "@/libs/getUserProfile";
 import { FaRegUserCircle } from "react-icons/fa";
-import { GoTriangleDown } from "react-icons/go";
+import { FaPowerOff } from "react-icons/fa6";
 
 export default async function TopMenu() {
 	const session = await getServerSession(authOptions);
+
 
 	if (session && session.user.token) {
 		var profile = await getUserProfile(session.user.token);
@@ -39,13 +40,13 @@ export default async function TopMenu() {
 			/>
 			<div className="w-fit text-2xl text-center font-bold flex mt-auto mb-auto ml-4 mr-4">
 				{session ? (
-					<Link href="/api/auth/signout" underline="none">
-						<div className="flex items-center text-[#203541]">
-							<FaRegUserCircle className="mr-2" />
-							{profile.data?.name}
-							<GoTriangleDown />
-						</div>
-					</Link>
+					<div className="flex items-center text-[#203541]">
+						<FaRegUserCircle className="mr-2" />
+						{profile.data?.name}
+						<Link href="/api/auth/signout" underline="none">
+								<FaPowerOff className="ml-4 text-[#203541]"/>
+						</Link>
+					</div>
 				) : (
 					<div className="flex items-center">
 						<Link href="/api/auth/login" underline="none">
