@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 export default function MyReservation() {
 	const { data: session } = useSession();
@@ -36,7 +37,25 @@ export default function MyReservation() {
 			alert("Please login first");
 			router.push("/api/auth/login");
 		}
-	}, []);
+	});
+
+	async function DeleteReservation(id:string){
+		if (session) {
+			const response = fetch(
+				`https://presentation-day-1-kalaeksi-phloeng-rachan.vercel.app/api/reservations/${id}`,
+				{
+					method: "DELETE",
+					headers: {
+						authorization: `Bearer ${session.user.token}`,
+						"Content-Type": "application/json",
+					},
+				}
+			);
+			if((await response).status === 400){
+				throw new Error("DELETE FAIL");
+			}
+		}
+	}
 
 	return (
 		<div className="mx-[240px] h-[91vh] flex-col place-content-around">
@@ -79,7 +98,20 @@ export default function MyReservation() {
 
 									<button
 										className="bg-[#F62A66] w-[150px] h-full flex justify-center items-center rounded-tr-[20px] rounded-br-[20px]"
-										onClick={() => {}}
+										onClick={() => {
+											Swal.fire({
+												title: "Do you want to delete this reservation?",
+												showDenyButton: true,
+												confirmButtonText: "Yes",
+												denyButtonText: `No`
+											  }).then((result) => {
+												/* Read more about isConfirmed, isDenied below */
+												if (result.isConfirmed) {
+													DeleteReservation(massageItem._id);
+												}
+											  });
+
+										}}
 									>
 										<RiDeleteBin6Line size="48px" color="#203541" />
 									</button>
