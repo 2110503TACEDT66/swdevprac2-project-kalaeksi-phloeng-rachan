@@ -48,7 +48,7 @@ export default async function TopMenu() {
           </div>
         ) : (
           <div className="flex items-center">
-            <Link href="/api/auth/logout" underline="none">
+            <Link href="/api/auth/login" underline="none">
               <div className="text-[24px] font-bold text-[#203541] w-fit">
                 Login
               </div>
