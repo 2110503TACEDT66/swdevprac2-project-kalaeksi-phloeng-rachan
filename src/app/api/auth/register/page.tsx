@@ -102,7 +102,7 @@ export default function Register() {
               className="w-[40%] font-bold text-black bg-yellow-500 hover:bg-yellow-600 my-2"
               style={{ backgroundColor: '#FFD933' }}
             >
-              Register
+              register
             </Button>
           </div>
         </form>
