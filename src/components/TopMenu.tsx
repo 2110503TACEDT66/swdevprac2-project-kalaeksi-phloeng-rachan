@@ -31,7 +31,7 @@ export default async function TopMenu() {
 				</div>
 			</Link>
 
-			<TopMenuItem title="Shop" icon="storefront" pageRef="/car" />
+			<TopMenuItem title="Shop" icon="storefront" pageRef="/massageShop" />
 			<TopMenuItem
 				title="My reservations"
 				icon="spa"
