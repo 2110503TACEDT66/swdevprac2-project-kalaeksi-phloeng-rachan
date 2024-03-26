@@ -39,7 +39,7 @@ export default async function TopMenu() {
       />
       <div className="w-fit text-2xl text-center font-bold flex mt-auto mb-auto ml-4 mr-4">
         {session ? (
-          <div className="flex items-center text-[#203541]">
+          <div className="flex items-center text-[#203541] whitespace-nowrap">
             <FaRegUserCircle className="mr-2" />
             {profile.data?.name}
             <Link href="/api/auth/signout" underline="none">

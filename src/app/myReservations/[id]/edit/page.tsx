@@ -89,7 +89,7 @@ export default function Reservations({ params }: { params: { id: string } }) {
 						width={0}
 						height={0}
 						sizes="100vh"
-						className="w-[1200px] h-[720px] rounded-[20px] object-fit"
+						className="w-[1200px] h-[500px] rounded-[20px] object-fit"
 					></Image>
 				</div>
 				<div className="w-[540px] h-[720px] ml-[60px] border-2 border-[#EEEEEE] rounded-xl px-[30px]">

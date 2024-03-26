@@ -18,14 +18,6 @@ export default function Register() {
       setPasswordError(true);
     }
 
-    if (password !== confirmPassword) {
-      setPasswordNotMatch(true);
-    }
-
-    if (passwordError || passwordNotMatch) {
-      return;
-    }
-
     const registerForm: IRegister = {
       name: registerFormData.get("username") as string,
       email: registerFormData.get("email") as string,
@@ -35,7 +27,7 @@ export default function Register() {
     };
 
     await register(registerForm);
-    redirect("/");
+    redirect("/api/auth/login");
   };
 
   return (

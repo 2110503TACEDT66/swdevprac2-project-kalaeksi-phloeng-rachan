@@ -1,4 +1,5 @@
 import { ILogin, IRegister, IUser } from "@/interfaces/user/login.interface";
+import Swal from 'sweetalert2'
 
 
 export const login = async (loginForm: ILogin) => {
@@ -56,16 +57,31 @@ export const register = async (registerForm: IRegister) => {
       },
       body: JSON.stringify(registerForm),
     });
-    console.log(registerForm);
-    alert("look");
+
+    if(res.status === 400){
+      Swal.fire({
+        icon: "error",
+        title: "This email already registered",
+      });
+      return;
+    }
+
     if (!res.ok) {
-      console.log()
       throw new Error("Something went wrong");
     }
+
+    Swal.fire({
+      title: "Register success",
+      icon: "success"
+    })
 
     const data = await res.json();
     return data;
   } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "This email already registered",
+    });
     console.log(error);
     throw error;
   }

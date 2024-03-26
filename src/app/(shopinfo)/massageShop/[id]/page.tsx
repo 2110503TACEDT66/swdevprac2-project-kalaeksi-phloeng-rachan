@@ -1,9 +1,22 @@
 import getMassage from "@/libs/getMassage"
 import ProductCardDetail from "@/components/ProductCardDetail";
+import { getReviews } from "@/libs/getReviews";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import Image from "next/image";
+import { Rating } from "@mui/material";
 
 export default async function MassageDetailPage( {params} : { params: {id:string}} ) {
     
     const massageShopDetail = await getMassage(params.id);
+
+    const session = await getServerSession(authOptions);
+
+    if(session){
+        var ReviewContent = await getReviews(params.id, session.user.token);
+        console.log(ReviewContent)
+    }
+
 
     return(
         <main className="p-5">
@@ -17,53 +30,28 @@ export default async function MassageDetailPage( {params} : { params: {id:string
                                         open={massageShopDetail.massageShop.open}
                                         close={massageShopDetail.massageShop.close}/>
             </div>
+            <div className="w-[1440px] h-fit bg-[#3A4750] m-auto mt-5">
+                {session?
+                ReviewContent.data.map((item:ReviewItem) => (
+                    <div className="flex p-5">
+                        <Image src={"/img/pastamania.png"} width={0} height={0} sizes="100vh" alt="pasta" className="w-[120px] h-[120px] rounded-[120px]">
+                        </Image>
+                        <div className="block ml-5">
+                            <div className="text-4xl">
+                                {item.user.name}
+                            </div>
+                            <Rating
+                                name="read-only"
+                                value={item.reviewPoint}
+                            />
+                            <div className="text-2xl">
+                                {item.comment}
+                            </div>
+                        </div>
+                    </div>
+                )): ""
+            }
+            </div>
         </main>
     )
 }
-/*
-export async function generateStaticParams() {
-    return [{cid:'001'}, {cid:'002'}, {cid:'003'}, {cid:'004'}]
-}
-
-<ProductCard massageShopName={massageShopItem.name}
-                                    massageShopAddress={massageShopItem.address}
-                                    imgSrc='/img/massage2.jpg'
-                                    massageShopRating={5}
-                                    massageShopId={massageShopItem.id}/>
-
-<div className="flex mx-[60px] mt-[60px]">
-    <div>
-        <Image
-            src={"/img/massage1.jpg"}
-            alt="Image example"
-            width={0}
-            height={0}
-            sizes="100vh"
-            className="w-[1200px] h-[500px] rounded-[20px] object-fit"
-        ></Image>
-    </div>
-    <div className="w-[540px] h-[720px] ml-[60px] border-2 border-[#EEEEEE] rounded-xl px-[30px]">
-        <h1 className="text-5xl text-center mt-5 font-weight: 700">
-            Reservation
-        </h1>
-        <h2 className="text-2xl text-center mt-2 font-weight: 700">
-            {massageShopDetail.name}
-        </h2>
-        <form>
-            <div className="mt-5 mb-4">
-                <h2 className="text-xl">Name</h2>
-            </div>
-            <div className="mb-4">
-                <h2 className="text-xl">Email</h2>
-            </div>
-            <div className="mb-4">
-                <h2 className="text-xl">Phone number</h2>
-            </div>
-            <br />
-            <div className="flex justify-center mt-4">
-                
-            </div>
-        </form>
-    </div>
-</div>
-*/
