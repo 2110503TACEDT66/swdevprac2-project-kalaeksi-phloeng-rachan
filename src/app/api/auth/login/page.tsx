@@ -17,11 +17,11 @@ export default function Login() {
   return (
     <main className="h-screen w-full flex items-center justify-center">
       
-        <div className="md:w-[60%] w-full bg-slate-100 md:rounded-r-lg rounded-lg p-6 flex flex-col justify-center items-center">
-          <h1 className={`text-4xl pb-10 font-extrabold text-center text-black`}>Login</h1>
+        <div className="md:w-[23%] w-full bg-black md:rounded-r-lg rounded-lg p-6 flex flex-col justify-center items-center" style={{ height: '600px' }}>
+          <h1 className={`text-4xl pb-10 font-extrabold text-center text-white`}>Login</h1>
           <form className="w-full" action={handleSubmit}>
             <div className="p-4 space-y-2">
-              <label htmlFor="email" className={`text-xl text-black`}> Email </label>
+              <label htmlFor="email" className={`text-xl text-white`}> Email </label>
               <input
                 type="email"
                 required
@@ -31,7 +31,7 @@ export default function Login() {
               />
             </div>
             <div className="p-4 space-y-2">
-              <label className={`text-xl text-black`}>Password</label>
+              <label className={`text-xl text-white`}>Password</label>
               <input
                 type="password"
                 required
@@ -41,12 +41,12 @@ export default function Login() {
               />
             </div>
             <div className="flex justify-center">
-              <Button
-                type="submit"
-                className="w-[40%] font-serif text-white bg-primary hover:bg-primaryHover my-2"
-              >
-                Login
-              </Button>
+            <Button
+              type="button"
+              className="w-[10%] font-serif text-black bg-yellow-500 hover:bg-yellow-600 my-2"
+            >
+              Login
+            </Button>
             </div>
           </form>
         </div>

@@ -42,14 +42,14 @@ export default function Register() {
   return (
     <main className="h-full md:h-screen md:py-4 w-full flex items-center justify-center">
   
-    <div className="md:w-[60%] w-full bg-slate-100 md:rounded-r-lg rounded-lg p-6 flex flex-col justify-center items-center">
-      <h1 className="text-4xl pb-10 font-extrabold text-center text-black">
+    <div className="md:w-[23%] w-full bg-black md:rounded-r-lg rounded-lg p-6 flex flex-col justify-center items-center">
+      <h1 className="text-4xl pb-10 font-extrabold text-center text-white">
         Register
         
       </h1>
       <form className="w-full" action={handleSubmit}>
         <div className="p-4 space-y-2">
-          <label htmlFor="username" className="text-xl text-black">
+          <label htmlFor="username" className="text-xl text-white">
             Username
           </label>
           <input
@@ -61,7 +61,7 @@ export default function Register() {
           />
         </div>
         <div className="p-4 space-y-2">
-          <label htmlFor="email" className="text-xl text-black">
+          <label htmlFor="email" className="text-xl text-white">
             Email
           </label>
           <input
@@ -75,7 +75,7 @@ export default function Register() {
 
         <div className="flex md:flex-row flex-col">
           <div className="p-4 space-y-2 md:w-3/4">
-            <label htmlFor="tel" className="text-xl text-black">
+            <label htmlFor="tel" className="text-xl text-white">
               Telephone Number
             </label>
             <input
@@ -91,7 +91,7 @@ export default function Register() {
 
         <div className="p-4 space-y-2">
           <div className="flex flex-row space-x-4">
-            <label className="text-xl text-black">Password</label>
+            <label className="text-xl text-white">Password</label>
             
           </div>
           <input
@@ -106,7 +106,7 @@ export default function Register() {
         <div className="flex justify-center">
           <Button
             type="submit"
-            className="w-[40%] font-serif text-white bg-primary hover:bg-primaryHover my-2"
+            className="w-[40%] font-serif text-black bg-yellow-500 hover:bg-yellow-600 my-2"
           >
             Register
           </Button>

@@ -82,7 +82,7 @@ export const updateUserProfile = async (token: string, body: IUser) => {
       },
       body: JSON.stringify(body),
     });
-
+ 
     if (!res.ok) {
       throw new Error("Something went wrong");
     }
